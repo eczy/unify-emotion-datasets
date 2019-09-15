@@ -1,4 +1,4 @@
-Forked from: git@github.com:sarnthil/unify-emotion-datasets.git
+Forked from: https://github.com/sarnthil/unify-emotion-datasets
 
 # Requirements:
 
