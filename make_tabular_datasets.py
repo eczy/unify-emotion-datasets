@@ -30,33 +30,42 @@ def create_dataset():
             text = tokenize(datum["text"])
             examples.append((emotion, text))
             examples_by_source[source].append((emotion, text))
-        train, test = train_test_split(examples)
+        # train, test = train_test_split(examples)
     # with open(f"{dataset_source}.csv", "w") as f:
     with open("unified_without_source.csv", "w") as csvfile:
         fieldnames = ["label", "text"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
-        for number, text in test:
+        for number, text in examples:
             if number is None or not text:
                 continue
             writer.writerow({"label": number, "text": text})
-        for number, text in train:
-            if number is None or not text:
-                continue
-            writer.writerow({"label": number, "text": text})
+        # for number, text in test:
+        #     if number is None or not text:
+        #         continue
+        #     writer.writerow({"label": number, "text": text})
+        # for number, text in train:
+        #     if number is None or not text:
+        #         continue
+        #     writer.writerow({"label": number, "text": text})
+
     for source, examples in examples_by_source.items():
         with open(f"{source}.csv", "w") as csvfile:
             fieldnames = ["label", "text"]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            for number, text in test:
+            for number, text in examples:
                 if number is None or not text:
                     continue
                 writer.writerow({"label": number, "text": text})
-            for number, text in train:
-                if number is None or not text:
-                    continue
-                writer.writerow({"label": number, "text": text})
+            # for number, text in test:
+            #     if number is None or not text:
+            #         continue
+            #     writer.writerow({"label": number, "text": text})
+            # for number, text in train:
+            #     if number is None or not text:
+            #         continue
+            #     writer.writerow({"label": number, "text": text})
 
 # os.makedirs()
 
